@@ -22,7 +22,7 @@ identify_ww_outlier <- function(data, column = "confirm", date_column = "date") 
   data %>%
     mutate(
       med = median(log_vals[is_nd==0]),
-      mad = mad(log_vals[is_nd==0]),
+      mad = mad(log_vals[is_nd==0]), # the scaling factor is accounted for with mad()
       mod_z = (log_vals - med) / mad,
       is_outlier = mod_z > 3.5
     ) %>% 
